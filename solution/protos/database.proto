@@ -1,0 +1,23 @@
+syntax = "proto3";
+package database;
+
+message GetEdgesRequest {
+    int64 from_id = 1;
+    int64 edge_type = 2;
+}
+
+message TwoHopsRequest {
+    int64 from_id = 1;
+    int64 edge1_type = 2;
+    int64 edge2_type = 3;
+}
+
+message GetEdgesResponse {
+    repeated int64 ids = 1;
+}
+
+service Database {
+    rpc get_edges(GetEdgesRequest) returns (GetEdgesResponse);
+
+    rpc two_hops(TwoHopsRequest) returns (GetEdgesResponse);
+}
